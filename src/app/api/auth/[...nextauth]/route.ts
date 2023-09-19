@@ -1,7 +1,7 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import Providers from "next-auth/providers/credentials";
 
-export const handler: NextAuthOptions = NextAuth({
+const authOptions: NextAuthOptions = {
 	callbacks: {
 		async jwt({ token, account }) {
 			if (account) {
@@ -51,6 +51,7 @@ export const handler: NextAuthOptions = NextAuth({
 	},
 	debug: process.env.NODE_ENV === "development",
 	pages: {},
-});
+};
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

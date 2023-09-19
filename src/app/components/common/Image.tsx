@@ -12,7 +12,7 @@ import { PreviewImageFile } from "./PreviewImageFile";
 
 type Image = { logo?: string | undefined };
 
-export default function Image() {
+export default function Images() {
 	const formMethods = useForm<Image>({ values: { logo: "" } });
 
 	const {

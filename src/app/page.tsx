@@ -55,12 +55,12 @@ const Home = () => {
 	const [images, setImages] = useState(initialImages);
 
 	const moveImages = (dragIndex: number, hoverIndex: number) => {
-		//  if (!session) {
-		// 	 // If the user is not authenticated, display an alert or prompt to sign in
-		// 	   alert("Please sign in to use drag-and-drop.");
-		// 		signIn()
-		// 		return;
-		// 	}
+		 if (!session) {
+			 // If the user is not authenticated, display an alert or prompt to sign in
+			   alert("Please sign in to use drag-and-drop.");
+				signIn()
+				return;
+			}
 		const newImages = [...images];
 		const draggedImage = newImages[dragIndex];
 		
