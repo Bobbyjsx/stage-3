@@ -4,7 +4,7 @@ import Image, { ImageProps } from 'next/image';
 import {
   GlobalModalContext,
   ModalTypes,
-} from '../../context/GlobalModalContextProvider';
+} from '../../../context/GlobalModalContextProvider';
 
 type PreviewImageFileProps = Omit<ImageProps, 'src'> & {
   file: File | string;
