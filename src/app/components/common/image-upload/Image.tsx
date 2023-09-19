@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { ImageInput } from "./ImageInput";
-import { Button } from "./Button";
+import { Button } from "../Button";
 import {
 	Controller,
 	FormProvider,

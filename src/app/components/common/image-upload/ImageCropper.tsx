@@ -2,15 +2,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Cropper from "react-easy-crop";
 // import { Area, Point } from "react-easy-crop/types";
-import { Button } from "./Button";
+import { Button } from "../Button";
 import { getOrientation } from "get-orientation/browser";
 import {
 	getCroppedImg,
 	getRotatedImage,
 	readFile,
-} from "../../lib/canvasUtils";
+} from "../../../lib/canvasUtils";
 
-import { Modal } from "./Modal";
+import { Modal } from "../Modal";
 
 type ImageCropperProps = {
 	onClose: () => void;

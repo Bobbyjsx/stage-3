@@ -1,12 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import React, { useRef } from "react";
 import { useDrag, useDrop, DropTargetMonitor } from "react-dnd";
 
 interface ImageProps {
-	image: {
-		id: number;
-		src: string;
-	};
+	image: ImageData;
 	index: number;
 	moveImage:
 		| ((dragIndex: number, hoverIndex: number) => void)
@@ -45,50 +43,65 @@ const Images: React.FC<ImageProps> = ({ image, index, moveImage }) => {
 	drag(drop(ref));
 
 		return (
-    <div
-      ref={ref}
-      style={{ opacity: isDragging ? 0 : 1 }}
-      className="w-full overflow-hidden"
-    >
-      <Image alt={`img - ${image.id}`} src={image.src} className="w-full h-full object-cover object-center" width={1000} height={1000} />
-    </div>
-  );
+			<div
+				ref={ref}
+				style={{ opacity: isDragging ? 0 : 1 }}
+				className="w-72 h-56 overflow-hidden rounded-xl">
+				<Image
+					alt={`img - ${image.id}`}
+					src={image.webformatURL}
+					className="w-full h-full object-cover object-center"
+					width={1000}
+					height={1000}
+				/>
+			</div>
+		);
 };
 
 interface ImageListProps {
-	images: {
-		id: number;
-		src: string;
-	}[];
+	images: ImageData[];
 	moveImage:
 		| ((dragIndex: number, hoverIndex: number) => void)
 		| undefined;
 }
 
 const ImageList: React.FC<ImageListProps> = ({
-	images,
-	moveImage,
+  images,
+  moveImage,
 }) => {
-	const renderImage = (
-		image: { id: number; src: string },
-		index: number
-	) => {
-		return image ? (
-			<Images
-				image={image}
-				index={index}
-				key={`${image.id}-image`}
-				moveImage={moveImage}
-			/>
-		) : null;
-	};
-	return (
-		<section className="file-list w-full">
-			<div className=" grid md:grid-cols-3 grid-cols-1 gap-5 place-items-center">
-				{images.map(renderImage)}
+  const renderImage = (
+    image: ImageData,
+    index: number
+  ) => {
+    return image ? (
+      <Images
+        image={image}
+        index={index}
+        key={`${image.id}-image`}
+        moveImage={moveImage}
+      />
+    ) : null;
+  };
+
+  // if images are null
+  if (!images || images.length === 0) {
+	  return (
+			<div className="w-full flex flex-col justify-center items-center h-[70vh] gap-y-7">
+				<p className="text-xl font-semibold font-serif">
+					Oopss! Image not found.
+				</p>
+				<Link href="/" className="bg-yellow-500 border-2 border-yellow-800 text-black rounded-md px-6 py-2 font-serif">Go back</Link>
 			</div>
-		</section>
-	);
+		);
+  }
+
+  return (
+    <section className="file-list md:w-[70%] w-[90%] mx-auto bg-white px-3 py-5 rounded-md">
+      <div className=" grid md:grid-cols-3 grid-cols-1 gap-5 place-items-center">
+        {images.map(renderImage)}
+      </div>
+    </section>
+  );
 };
 
 export default ImageList;

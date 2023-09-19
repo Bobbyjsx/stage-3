@@ -8,7 +8,7 @@ export const LoadingSpinner = ({ className }: LoadingSpinnerProps) => {
   return (
     <div
       className={classNames(
-        'h-4 w-4 animate-spin rounded-full border-4 border-t-white',
+        'h-24 w-24 animate-spin rounded-full border-4 border-white',
         className
       )}
     />

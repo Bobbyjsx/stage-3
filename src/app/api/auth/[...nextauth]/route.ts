@@ -25,7 +25,7 @@ const authOptions: NextAuthOptions = {
 					password: string;
 					id: string;
 				} = {
-					email: "example@gmail.com",
+					email: "user@example.com",
 					password: "1Password",
 					id: "testUser",
 				};
