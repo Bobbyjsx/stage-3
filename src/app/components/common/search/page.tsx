@@ -1,25 +1,11 @@
 "use client";
-import MovieCard from "@/app/components/common/MovieCard";
-import { useApiCache } from "@/app/hooks/useApiCache";
-import Loading from "@/app/loading";
+// 
 import { useSearchParams } from "next/navigation";
 
 const Search = () => {
 	const searchParams = useSearchParams();
 	const search = searchParams.get("search");
 
-	const { data: searchResult, isLoading } = useApiCache(
-		`/search/movie?query=${search}`
-	);
-	console.log(searchResult);
-	
-	if (isLoading) {
-		return (
-			<>
-				<Loading />
-			</>
-		);
-	}
 	return (
 		<main className="flex flex-col justify-center items-center w-full mx-auto">
 			<div className="flex items-center mx-auto w-full py-10">
@@ -33,7 +19,7 @@ const Search = () => {
 				</div>
 			</div>
 			<div className="grid grid-cols-1 md:grid-cols-4 place-items-center gap-20">
-				{searchResult?.results?.map((tile: Movie) => {
+				{/* {searchResult?.results?.map((tile: Movie) => {
 					return (
 						<div
 							className="w-full mx-auto"
@@ -41,7 +27,7 @@ const Search = () => {
 							<MovieCard movieDetails={tile}  />
 						</div>
 					);
-				})}
+				})} */}
 			</div>
 		</main>
 	);
